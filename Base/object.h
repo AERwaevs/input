@@ -1,22 +1,11 @@
 #pragma once
 
 #include <atomic>
+#include <typeinfo>
 
-#include <Base/ref_ptr>
+#include "platform.h"
+#include "ref_ptr.h"
 
-template< typename T >
-concept Creatable = requires( T t )
-{
-    T::create();
-};
-
-template< typename T >
-concept Compatible = requires( T t )
-{
-    { t.type_info() } -> std::same_as< const std::type_info& >;
-    { t.is_compatible( t.type_info ) } -> std::same_as< bool >;
-};
- 
 class AEON_DLL Object
 {
 public:
@@ -36,12 +25,12 @@ public:
         return ref_ptr<Object>( new Object( args... ) );
     }
 
-    virtual const std::type_info& type_info() const noexcept
+    virtual inline const std::type_info& type_info() const noexcept
     {
         return typeid( Object );
     }
 
-    virtual bool is_compatible( const std::type_info& type ) const noexcept
+    virtual inline bool is_compatible( const std::type_info& type ) const noexcept
     {
         return type == typeid( Object );
     }
@@ -66,10 +55,10 @@ private:
     }
 
 protected:
-    template< class T >
+    template< Referenced R >
     friend class ref_ptr;
 
-    template< class T >
+    template< class R >
     friend struct is_referenced;
 
 private:

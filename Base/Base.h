@@ -10,16 +10,11 @@
 #include <typeinfo>
 #include <map>
 
-#include <Base/platform>
-#include <Base/inherit>
-#include <Base/object>
-#include <Base/ref_ptr>
-#include <Base/observer_ptr>
-
-#include <Core/Log.h>
-
-#define BETTER_ENUMS_MACRO_FILE <better-enums/enum_256.h>
-#include <better-enums/enum.h>
+#include "platform.h"
+#include "inherit.h"
+#include "object.h"
+#include "ref_ptr.h"
+#include "observer_ptr.h"
 
 #define BIT( bit ) 1 << bit
 

@@ -12,13 +12,16 @@
 #       ifndef NOMINMAX 
 #           define NOMINMAX    /* Guard against redefining min and max macros on Windows */
 #       endif
-#       ifndef AEON_GENERATED_EXPORT
+#       ifdef AEON_SHARED
 #           ifdef AEON_EXPORTS
 #               define AEON_DLL __declspec(dllexport)  /* Export this symbol from .dll */
 #           else
 #               define AEON_DLL __declspec(dllimport)  /* Import this symbol from .dll */
 #           endif
 #           define     AEON_API __cdecl                /* Specifies API entry into .dll  */
+#       else
+#       define AEON_DLL
+#       define AEON_API
 #       endif
 #       define     AEON_PLATFORM_WINDOWS
 #   else

@@ -1,14 +1,23 @@
 #pragma once
 
 #include <memory>
+#include <typeinfo>
+#include <concepts>
 
-#include <Base/object>
-#include <Base/ref_ptr>
+#include "object.h"
+#include "ref_ptr.h"
 
 template< typename T >
 concept Managed = std::derived_from<T, Object>;
 
-template< Managed B, class D >
+template< typename T >
+concept Compatible = requires( T t )
+{
+    { t.type_info() } -> std::same_as< const std::type_info& >;
+    { t.is_compatible( t.type_info() ) } -> std::same_as< bool >;
+};
+ 
+template< Compatible B, class D >
 class Inherit : public B
 {
 public:

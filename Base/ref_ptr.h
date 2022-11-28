@@ -12,9 +12,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 </editor-fold> */
 
-template < typename T >
-class ref_ptr;
-
 template< typename T >
 concept has_reference_methods = requires( T t )
 {
@@ -22,22 +19,13 @@ concept has_reference_methods = requires( T t )
     t.unref();
 };
 
-template< typename T, typename... Args >
-concept has_create_method = requires( T t, Args&&... args )
-{
-    { T::create( args... ) } -> std::same_as<ref_ptr<T>>;
-};
-
-template< typename T >
-struct is_creatable { constexpr static bool value = has_create_method<T>; };
-
 template< typename T >
 struct is_referenced { constexpr static bool value = has_reference_methods<T>; };
 
 template< typename T >
-concept Referenced = has_reference_methods<T>;
+concept Referenced = is_referenced<T>::value;
 
-template< class T >
+template< Referenced T >
 class ref_ptr
 {
 public:
@@ -117,30 +105,6 @@ public:
     template< class R >
     auto operator <=> ( const ref_ptr<R>& rhs ) const { return ( ptr <=> rhs.ptr ); }
 
-    template< class R >
-    bool operator <  ( const ref_ptr<R>& rhs ) const { return ( ptr <  rhs.ptr ); }
-
-    template< class R >
-    bool operator >  ( const ref_ptr<R>& rhs ) const { return ( ptr >  rhs.ptr ); }
-
-    template< class R >
-    bool operator == ( const ref_ptr<R>& rhs ) const { return ( ptr == rhs.ptr ); }
-
-    template< class R >
-    bool operator != ( const ref_ptr<R>& rhs ) const { return ( ptr != rhs.ptr ); }
-
-    template< class R >
-    bool operator <  ( const R* rhs )          const { return ( ptr <  rhs ); }
-
-    template< class R >
-    bool operator >  ( const R* rhs )          const { return ( ptr >  rhs ); }
-
-    template< class R >
-    bool operator == ( const R* rhs )          const { return ( ptr == rhs ); }
-
-    template< class R >
-    bool operator != ( const R* rhs )          const { return ( ptr != rhs ); }
-
     bool valid()                      const noexcept { return ptr != nullptr; }
 
     explicit operator bool()          const noexcept { return valid(); }
@@ -164,8 +128,12 @@ public:
     ref_ptr<R> cast() const { return ref_ptr<R>( ptr ? ptr->template cast<R>() : nullptr ); }
 
 protected:
+    template< Referenced R >
+    friend class    ref_ptr;
     template< class R >
-    friend class ref_ptr;
+    friend struct   is_referenced;
+    template< class R >
+    friend struct   is_creatable;
     
 protected:
     T* ptr;

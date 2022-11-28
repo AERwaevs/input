@@ -1,18 +1,12 @@
 cmake_minimum_required(VERSION 3.0.0)
 set( CMAKE_CXX_STANDARD 20 )
-project(aeon-base VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
+include(    GenerateExportHeader    )
 
-add_subdirectory( "src" )
+add_library(                aeon-base STATIC        Base.h )
+target_include_directories( aeon-base PUBLIC        ${CMAKE_CURRENT_SOURCE_DIR} )
+set_target_properties(      aeon-base PROPERTIES    LINKER_LANGUAGE CXX )
 
-set( CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/build )
+GENERATE_EXPORT_HEADER( aeon-base )
 
-if(BUILD_TESTING)
-    add_subdirectory( "test" )
-endif()
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+install( TARGETS aeon-base )

@@ -15,6 +15,10 @@
 #include "object.h"
 #include "ref_ptr.h"
 #include "observer_ptr.h"
+#include "Log.h"
+
+#define BETTER_ENUMS_MACRO_FILE "enum_256.h"
+#include "../Vendor/better-enums/enum.h"
 
 #define BIT( bit ) 1 << bit
 

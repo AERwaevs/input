@@ -55,7 +55,7 @@ private:
     }
 
 protected:
-    template< Referenced R >
+    template< class R >
     friend class ref_ptr;
 
     template< class R >

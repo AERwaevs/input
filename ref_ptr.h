@@ -25,7 +25,7 @@ struct is_referenced { constexpr static bool value = has_reference_methods<T>; }
 template< typename T >
 concept Referenced = is_referenced<T>::value;
 
-template< Referenced T >
+template< class T >
 class ref_ptr
 {
 public:
@@ -105,6 +105,30 @@ public:
     template< class R >
     auto operator <=> ( const ref_ptr<R>& rhs ) const { return ( ptr <=> rhs.ptr ); }
 
+    template< class R >
+    bool operator <  ( const ref_ptr<R>& rhs ) const { return ( ptr <  rhs.ptr ); }
+
+    template< class R >
+    bool operator >  ( const ref_ptr<R>& rhs ) const { return ( ptr >  rhs.ptr ); }
+
+    template< class R >
+    bool operator == ( const ref_ptr<R>& rhs ) const { return ( ptr == rhs.ptr ); }
+
+    template< class R >
+    bool operator != ( const ref_ptr<R>& rhs ) const { return ( ptr != rhs.ptr ); }
+
+    template< class R >
+    bool operator <  ( const R* rhs )          const { return ( ptr <  rhs ); }
+
+    template< class R >
+    bool operator >  ( const R* rhs )          const { return ( ptr >  rhs ); }
+
+    template< class R >
+    bool operator == ( const R* rhs )          const { return ( ptr == rhs ); }
+
+    template< class R >
+    bool operator != ( const R* rhs )          const { return ( ptr != rhs ); }
+
     bool valid()                      const noexcept { return ptr != nullptr; }
 
     explicit operator bool()          const noexcept { return valid(); }
@@ -128,7 +152,7 @@ public:
     ref_ptr<R> cast() const { return ref_ptr<R>( ptr ? ptr->template cast<R>() : nullptr ); }
 
 protected:
-    template< Referenced R >
+    template< class R >
     friend class    ref_ptr;
     template< class R >
     friend struct   is_referenced;

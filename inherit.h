@@ -17,7 +17,7 @@ concept Compatible = requires( T t )
     { t.is_compatible( t.type_info() ) } -> std::same_as< bool >;
 };
  
-template< Compatible B, class D >
+template< class B, class D >
 class Inherit : public B
 {
 public:

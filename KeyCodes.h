@@ -4,8 +4,6 @@ namespace AEON
 {
     namespace Key
     {
-        using Symbol = uint16_t;
-    
         enum Mod : uint16_t
         {
             MOD_None                    = 0,

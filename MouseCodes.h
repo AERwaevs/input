@@ -15,8 +15,8 @@ namespace AEON
             Left        = Primary,
             Right       = Secondary,
             Middle      = Tertiary,
-            Front       = Auxilliary1,
-            Back        = Auxilliary2
+            Front       = Auxilliary2,
+            Back        = Auxilliary1
         };
     }
 }

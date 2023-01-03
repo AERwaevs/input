@@ -335,5 +335,187 @@ namespace AEON
             KB_RightAlt             = 230,
             KB_RightMenu            = 231
         };
+    
+        constexpr const char* GetName( Code code ) noexcept
+        {
+            switch( code )
+            {
+                case Code::None:                return "None";
+
+                case Code::Zero:                return "0";
+                case Code::One:                 return "1";
+                case Code::Two:                 return "2";
+                case Code::Three:               return "3";
+                case Code::Four:                return "4";
+                case Code::Five:                return "5";
+                case Code::Six:                 return "6";
+                case Code::Seven:               return "7";
+                case Code::Eight:               return "8";
+                case Code::Nine:                return "9";
+
+                case Code::a:                   return "a";
+                case Code::b:                   return "b";
+                case Code::c:                   return "c";
+                case Code::d:                   return "d";
+                case Code::e:                   return "e";
+                case Code::f:                   return "f";
+                case Code::g:                   return "g";
+                case Code::h:                   return "h";
+                case Code::i:                   return "i";
+                case Code::j:                   return "j";
+                case Code::k:                   return "k";
+                case Code::l:                   return "l";
+                case Code::m:                   return "m";
+                case Code::n:                   return "n";
+                case Code::o:                   return "o";
+                case Code::p:                   return "p";
+                case Code::q:                   return "q";
+                case Code::r:                   return "r";
+                case Code::s:                   return "s";
+                case Code::t:                   return "t";
+                case Code::u:                   return "u";
+                case Code::v:                   return "v";
+                case Code::w:                   return "w";
+                case Code::x:                   return "x";
+                case Code::y:                   return "y";
+                case Code::z:                   return "z";
+
+                case Code::A:                   return "A";
+                case Code::B:                   return "B";
+                case Code::C:                   return "C";
+                case Code::D:                   return "D";
+                case Code::E:                   return "E";
+                case Code::F:                   return "F";
+                case Code::G:                   return "G";
+                case Code::H:                   return "H";
+                case Code::I:                   return "I";
+                case Code::J:                   return "J";
+                case Code::K:                   return "K";
+                case Code::L:                   return "L";
+                case Code::M:                   return "M";
+                case Code::N:                   return "N";
+                case Code::O:                   return "O";
+                case Code::P:                   return "P";
+                case Code::Q:                   return "Q";
+                case Code::R:                   return "R";
+                case Code::S:                   return "S";
+                case Code::T:                   return "T";
+                case Code::U:                   return "U";
+                case Code::V:                   return "V";
+                case Code::W:                   return "W";
+                case Code::X:                   return "X";
+                case Code::Y:                   return "Y";
+                case Code::Z:                   return "Z";
+
+                case Code::Space:               return " ";
+                case Code::Grave:               return "`";
+                case Code::Tilde:               return "~";
+                case Code::ExclamationMark:     return "!";
+                case Code::At:                  return "@";
+                case Code::Hash:                return "#";
+                case Code::Dollar:              return "$";
+                case Code::Percent:             return "%";
+                case Code::Caret:               return "^";
+                case Code::Ampersand:           return "&";
+                case Code::Asterisk:            return "*";
+                case Code::LeftParenthesis:     return "(";
+                case Code::RightParenthesis:    return ")";
+                case Code::Underscore:          return "_";
+                case Code::Plus:                return "+";
+                case Code::Minus:               return "-";
+                case Code::Equals:              return "=";
+                case Code::LeftBracket:         return "[";
+                case Code::RightBracket:        return "]";
+                case Code::BackSlash:           return "\\";
+                case Code::VerticalSlash:       return "|";
+                case Code::LeftCurlyBracket:    return "{";
+                case Code::RightCurlyBracket:   return "}";
+                case Code::Semicolon:           return ";";
+                case Code::Apostrophe:          return "\'";
+                case Code::Colon:               return ":";
+                case Code::Quote:               return "\"";
+                case Code::Comma:               return ",";
+                case Code::Period:              return ".";
+                case Code::Slash:               return "/";
+                case Code::Less:                return "<";
+                case Code::Greater:             return ">";
+                case Code::Question:            return "?";
+
+                case Code::F1:                  return "F1";
+                case Code::F2:                  return "F2";
+                case Code::F3:                  return "F3";
+                case Code::F4:                  return "F4";
+                case Code::F5:                  return "F5";
+                case Code::F6:                  return "F6";
+                case Code::F7:                  return "F7";
+                case Code::F8:                  return "F8";
+                case Code::F9:                  return "F9";
+                case Code::F10:                 return "F10";
+                case Code::F11:                 return "F11";
+                case Code::F12:                 return "F12";
+
+                case Code::Backspace:           return "Backspace";
+                case Code::Tab:                 return "Tab";
+                case Code::Enter:               return "Enter";
+                case Code::Escape:              return "Escape";
+                case Code::CapsLock:            return "CapsLock";
+
+                case Code::PrintScreen:         return "PrintScreen";
+                case Code::PauseBreak:          return "PauseBreak";
+                case Code::ScrollLock:          return "ScrollLock";
+
+                case Code::Insert:              return "Insert";
+                case Code::Home:                return "Home";
+                case Code::PageUp:              return "PageUp";
+                case Code::PageDown:            return "PageDown";
+                case Code::Delete:              return "Delete";
+                case Code::End:                 return "End";
+
+                case Code::Left:                return "Left";
+                case Code::Up:                  return "Up";
+                case Code::Right:               return "Right";
+                case Code::Down:                return "Down";
+
+                case Code::NumLock_NP:          return "NumLock_NP";
+                case Code::Enter_NP:            return "Enter_NP";
+                case Code::Home_NP:             return "Home_NP";
+                case Code::Left_NP:             return "Left_NP";
+                case Code::Up_NP:               return "Up_NP";
+                case Code::Right_NP:            return "Right_NP";
+                case Code::Down_NP:             return "Down_NP";
+                case Code::PageUp_NP:           return "PageUp_NP";
+                case Code::PageDown_NP:         return "PageDown_NP";
+                case Code::End_NP:              return "End_NP";
+                case Code::Insert_NP:           return "Insert_NP";
+                case Code::Delete_NP:           return "Delete_NP";
+                case Code::Equals_NP:           return "Equals_NP";
+                case Code::Multiply_NP:         return "Multiply_NP";
+                case Code::Add_NP:              return "Add_NP";
+                case Code::Subtract_NP:         return "Subtract_NP";
+                case Code::Decimal_NP:          return "Decimal_NP";
+                case Code::Divide_NP:           return "Divide_NP"; 
+                case Code::Zero_NP:             return "Zero_NP";
+                case Code::One_NP:              return "One_NP";
+                case Code::Two_NP:              return "Two_NP";
+                case Code::Three_NP:            return "Three_NP";
+                case Code::Four_NP:             return "Four_NP";
+                case Code::Five_NP:             return "Five_NP";
+                case Code::Six_NP:              return "Six_NP";
+                case Code::Seven_NP:            return "Seven_NP";
+                case Code::Eight_NP:            return "Eight_NP";
+                case Code::Nine_NP:             return "Nine_NP";
+
+                case Code::Shift_L:             return "Shift_L";
+                case Code::Shift_R:             return "Shift_R";
+                case Code::Control_L:           return "Control_L";
+                case Code::Control_R:           return "Control_R";
+                case Code::Alt_L:               return "Alt_L";
+                case Code::Alt_R:               return "Alt_R";
+
+                case Code::Menu_L:              return "Menu_L";
+                case Code::Menu_R:              return "Menu_R";
+                default:                        return "Unknown";
+            }
+        }
     }
 }

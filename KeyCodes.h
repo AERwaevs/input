@@ -158,22 +158,26 @@ namespace AEON
 
             NumLock_NP              = 0xFFB0,
             Enter_NP                = 0xFFB1,
-            Home_NP                 = 0xFFB2,
+
             Left_NP                 = 0xFFB3,
             Up_NP                   = 0xFFB4,
             Right_NP                = 0xFFB5,
             Down_NP                 = 0xFFB6,
+
+            Insert_NP               = 0xFFBA,
+            Home_NP                 = 0xFFB2,
             PageUp_NP               = 0xFFB7,
             PageDown_NP             = 0xFFB8,
-            End_NP                  = 0xFFB9,
-            Insert_NP               = 0xFFBA,
             Delete_NP               = 0xFFBB,
+            End_NP                  = 0xFFB9,
+
             Equals_NP               = 0xFFBC,
             Multiply_NP             = 0xFFBD,
             Add_NP                  = 0xFFBE,
             Subtract_NP             = 0xFFBF,
             Decimal_NP              = 0xFFC0,
-            Divide_NP               = 0xFFC1, 
+            Divide_NP               = 0xFFC1,
+
             Zero_NP                 = 0xFFC2,
             One_NP                  = 0xFFC3,
             Two_NP                  = 0xFFC4,

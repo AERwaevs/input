@@ -14,7 +14,7 @@
 #include "inherit.h"
 #include "object.h"
 #include "ref_ptr.h"
-#include "observer_ptr.h"
+#include "spy_ptr.h"
 #include "Log.h"
 
 //#define BETTER_ENUMS_MACRO_FILE "enum_256.h"
@@ -47,7 +47,7 @@ namespace AEON
     template< typename Type >  
     using Shared        = ref_ptr< Type >;
     template< typename Type >
-    using Observer      = observer_ptr< Type >;
+    using Observer      = spy_ptr< Type >;
     template< typename Type >
     using List          = std::list< Type >;
     template< typename Type1, typename Type2 >

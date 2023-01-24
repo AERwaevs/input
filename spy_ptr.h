@@ -13,59 +13,59 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </editor-fold> */
 
 template< class T >
-class observer_ptr
+class spy_ptr
 {
 public:
     using element_type = T;
 
-    observer_ptr()                                      : ptr( nullptr )   {}
-    observer_ptr( const observer_ptr& rhs )             : ptr( rhs.ptr )   {}
-    ~observer_ptr()                                                        {}
+    spy_ptr()                                 : ptr( nullptr )   {}
+    spy_ptr( const spy_ptr& rhs )             : ptr( rhs.ptr )   {}
+    ~spy_ptr()                                                        {}
 
     template< class R >
-    explicit observer_ptr( R* rhs )                     : ptr( rhs )       {}
+    explicit spy_ptr( R* rhs )                : ptr( rhs )       {}
 
     template< class R >
-    explicit observer_ptr( const observer_ptr<R>& rhs ) : ptr( rhs.ptr )   {}
+    explicit spy_ptr( const spy_ptr<R>& rhs ) : ptr( rhs.ptr )   {}
 
     template< class R >
-    explicit observer_ptr( const ref_ptr<R>& rhs )      : ptr( rhs.get() ) {}
+    explicit spy_ptr( const ref_ptr<R>& rhs ) : ptr( rhs.get() ) {}
 
 
     template< class R >
-    observer_ptr& operator = ( R* rhs)                      { ptr = rhs;       return *this; }
+    spy_ptr& operator = ( R* rhs)                 { ptr = rhs;       return *this; }
 
-    observer_ptr& operator = ( const observer_ptr& rhs )    { ptr = rhs.ptr;   return *this; }
-
-    template< class R >
-    observer_ptr& operator = ( const observer_ptr<R>& rhs ) { ptr = rhs.ptr;   return *this; }
+    spy_ptr& operator = ( const spy_ptr& rhs )    { ptr = rhs.ptr;   return *this; }
 
     template< class R >
-    observer_ptr& operator = ( const ref_ptr<R>& rhs )      { ptr = rhs.get(); return *this; }
+    spy_ptr& operator = ( const spy_ptr<R>& rhs ) { ptr = rhs.ptr;   return *this; }
 
     template< class R >
-    bool operator <  ( const observer_ptr<R>& rhs ) const { return ( ptr <  rhs.ptr ); }
+    spy_ptr& operator = ( const ref_ptr<R>& rhs ) { ptr = rhs.get(); return *this; }
+
+    template< class R >
+    bool operator <  ( const spy_ptr<R>& rhs ) const { return ( ptr <  rhs.ptr ); }
  
     template< class R > 
-    bool operator >  ( const observer_ptr<R>& rhs ) const { return ( ptr >  rhs.ptr ); }
+    bool operator >  ( const spy_ptr<R>& rhs ) const { return ( ptr >  rhs.ptr ); }
  
     template< class R > 
-    bool operator == ( const observer_ptr<R>& rhs ) const { return ( ptr == rhs.ptr ); }
+    bool operator == ( const spy_ptr<R>& rhs ) const { return ( ptr == rhs.ptr ); }
  
     template< class R > 
-    bool operator != ( const observer_ptr<R>& rhs ) const { return ( ptr != rhs.ptr ); }
+    bool operator != ( const spy_ptr<R>& rhs ) const { return ( ptr != rhs.ptr ); }
 
     template< class R >
-    bool operator <  ( const R* rhs )               const { return ( ptr <  rhs ); }
+    bool operator <  ( const R* rhs )          const { return ( ptr <  rhs ); }
 
     template< class R >
-    bool operator >  ( const R* rhs )               const { return ( ptr >  rhs ); }
+    bool operator >  ( const R* rhs )          const { return ( ptr >  rhs ); }
 
     template< class R >
-    bool operator == ( const R* rhs )               const { return ( ptr == rhs ); }
+    bool operator == ( const R* rhs )          const { return ( ptr == rhs ); }
 
     template< class R >
-    bool operator != ( const R* rhs )               const { return ( ptr != rhs ); }
+    bool operator != ( const R* rhs )          const { return ( ptr != rhs ); }
 
     bool valid()             const noexcept { return ptr != nullptr; }
 
@@ -76,7 +76,7 @@ public:
 
 protected:
     template< class R >
-    friend class observer_ptr;
+    friend class spy_ptr;
 
     T* ptr;
 };

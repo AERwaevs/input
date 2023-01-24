@@ -97,13 +97,16 @@ public:
     }
 
     template< class R >
-    auto operator <<= ( auto&&... args ) const
+    ref_ptr& operator |= ( ref_ptr<R>&& rhs )
     { 
-        return valid() ? this : ref_ptr<R>( args... );
+        if( valid() ) return *this;
+        else if( rhs.valid() )
+        {
+            ptr     = rhs.ptr;
+            rhs.ptr = nullptr;
+        }
+        return *this;
     }
-
-    template< class R >
-    auto operator <=> ( const ref_ptr<R>& rhs ) const { return ( ptr <=> rhs.ptr ); }
 
     template< class R >
     bool operator <  ( const ref_ptr<R>& rhs ) const { return ( ptr <  rhs.ptr ); }
@@ -149,7 +152,7 @@ public:
     }
 
     template< class R >
-    ref_ptr<R> cast() const { return ref_ptr<R>( ptr ? ptr->template cast<R>() : nullptr ); }
+    ref_ptr<R> cast() const { return ref_ptr<R>( valid() ? ptr->template cast<R>() : nullptr ); }
 
 protected:
     template< class R >
@@ -160,5 +163,5 @@ protected:
     friend struct   is_creatable;
     
 protected:
-    T* ptr;
+    T* ptr = nullptr;
 };

@@ -9,6 +9,7 @@
 #include <chrono>
 #include <typeinfo>
 #include <map>
+#include <set>
 
 #include "platform.h"
 #include "inherit.h"

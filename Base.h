@@ -16,6 +16,7 @@
 #include "object.h"
 #include "ref_ptr.h"
 #include "spy_ptr.h"
+#include "singleton.h"
 #include "Log.h"
 
 //#define BETTER_ENUMS_MACRO_FILE "enum_256.h"

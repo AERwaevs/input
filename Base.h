@@ -19,16 +19,7 @@
 #include "singleton.h"
 #include "Log.h"
 
-//#define BETTER_ENUMS_MACRO_FILE "enum_256.h"
-//#include "../Vendor/better-enums/enum.h"
-
 #define BIT( bit ) 1 << bit
-
-#define BIND_WITH_ARGS( func ) \
-    [this]( auto&&... args ) -> decltype( auto ) \
-    { \
-        return this->func( std::forward< decltype( args ) >( args )... ); \
-    }
 
 #define AEON_TYPE_NAME( T ) \
     template<> constexpr const char*    AEON::GetName( typename T )    noexcept { return #T; } \

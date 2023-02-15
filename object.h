@@ -19,22 +19,6 @@ public:
         return ref_ptr<T>( new T( args... ) );
     }
 
-    template< typename... Args >
-    static inline auto create( Args&&... args )
-    {
-        return ref_ptr<Object>( new Object( args... ) );
-    }
-
-    virtual inline const std::type_info& type_info() const noexcept
-    {
-        return typeid( Object );
-    }
-
-    virtual inline bool is_compatible( const std::type_info& type ) const noexcept
-    {
-        return type == typeid( Object );
-    }
-
     inline unsigned int ref_count() const noexcept 
     { 
         return _ref_num.load(); 

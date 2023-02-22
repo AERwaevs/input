@@ -7,7 +7,7 @@ template< typename T >
 class Singleton : public Object
 {
 public:
-    static  ref_ptr<T> instance() { return s_instance; }
+    static  ref_ptr<T> instance() { return ref_ptr<T>( s_instance ); }
 
     template< typename... Args >
     static inline auto create( Args&&... args )
@@ -16,11 +16,11 @@ public:
     }
 
     template< typename... Args >
-    static  ref_ptr<T> get_or_create( Args&&... args )
+    static inline auto get_or_create( Args&&... args )
     {
-        if( !s_instance ) s_instance = T::create( args... );
-        return s_instance;
+        if( !s_instance ) s_instance = T::create( args... ).get();
+        return ref_ptr<T>( s_instance );
     }
 protected:
-    static inline   ref_ptr<T> s_instance;
+    static inline   T*  s_instance;
 };

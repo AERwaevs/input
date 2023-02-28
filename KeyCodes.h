@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Base/Base.h>
+
 namespace AEON
 {
     namespace Key

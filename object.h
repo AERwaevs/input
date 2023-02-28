@@ -6,45 +6,53 @@
 #include "platform.h"
 #include "ref_ptr.h"
 
-class AEON_DLL Object
+template< typename T = uint32_t >
+class AEON_DLL object_t
 {
+    static_assert( std::is_integral_v<T> && std::is_unsigned_v<T> );
+    static constexpr inline auto default_order = std::memory_order_seq_cst;
+
 public:
-    Object()                                    : _ref_num( 0 ) {}
-    Object( const Object& rhs )                 : Object()      {}
-    Object& operator = ( const Object& rhs )                    { return *this; }
-
-    template< typename T, typename... Args >
-    static inline auto create( Args&&... args )
-    {
-        return ref_ptr<T>( new T( args... ) );
-    }
-
-    inline unsigned int ref_count() const noexcept 
+    inline auto ref_count( std::memory_order order = default_order ) const noexcept
     { 
-        return _ref_num.load(); 
+        return _references.load(); 
     }
 
 protected:
-    virtual ~Object() {}
+    explicit object_t() noexcept : _references( 1 ) {}
+    virtual ~object_t()                             {}
+             object_t( object_t&& )      = delete;
+             object_t( const object_t& ) = delete;
 
 private:
-    inline void ref() const noexcept 
+    inline auto ref( std::memory_order order = default_order ) const noexcept
     { 
-        _ref_num.fetch_add( 1, std::memory_order_relaxed ); 
+        _references.fetch_add( 1, order );
     }
 
-    inline void unref() const noexcept 
+    inline auto unref( std::memory_order order = default_order ) const noexcept 
     { 
-        if ( _ref_num.fetch_sub( 1, std::memory_order_seq_cst ) <= 1 ) delete this;
+        if( _references.fetch_sub( 1, order ) <= 1 ) delete this;
     }
 
 protected:
     template< class R >
     friend class ref_ptr;
 
-    template< class R >
-    friend struct is_referenced;
-
 private:
-    mutable std::atomic_uint _ref_num;
+    mutable std::atomic<T> _references;
+};
+
+template< typename T >
+class AEON_DLL Object : public object_t<>
+{
+public:
+    template< typename... Args >
+    static inline auto create( Args&&... args )
+    {
+        return ref_ptr<T>( new T( std::forward<Args>( args )... ) );
+    }
+protected:
+    template< typename... Args >
+    Object( Args&&... args ) : object_t() {}
 };

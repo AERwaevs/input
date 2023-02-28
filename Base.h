@@ -12,12 +12,10 @@
 #include <set>
 
 #include "platform.h"
-#include "inherit.h"
 #include "object.h"
 #include "ref_ptr.h"
 #include "spy_ptr.h"
 #include "singleton.h"
-#include "Log.h"
 
 #define BIT( bit ) 1 << bit
 

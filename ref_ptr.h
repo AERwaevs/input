@@ -12,18 +12,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 </editor-fold> */
 
-template< typename T >
-concept has_reference_methods = requires( T t )
-{
-    t.ref();
-    t.unref();
-};
-
-template< typename T >
-struct is_referenced { constexpr static bool value = has_reference_methods<T>; };
-
-template< typename T >
-concept Referenced = is_referenced<T>::value;
+//template< typename T >
+//concept has_reference_methods = requires( T t )
+//{
+//    t.ref();
+//    t.unref();
+//};
+//
+//template< typename T >
+//struct is_referenced { constexpr static bool value = has_reference_methods<T>; };
+//
+//template< typename T >
+//concept Referenced = is_referenced<T>::value;
 
 template< class T >
 class ref_ptr

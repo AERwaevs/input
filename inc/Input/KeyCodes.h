@@ -9,11 +9,11 @@ namespace AEON
         enum Mod : uint16_t
         {
             MOD_None                    = 0,
-            MOD_Shift                   = BIT( 0 ),
-            MOD_Control                 = BIT( 1 ),
-            MOD_Alt                     = BIT( 2 ),
-            MOD_CapsLock                = BIT( 3 ),
-            MOD_NumLock                 = BIT( 4 ),
+            MOD_Shift                   = 1 << 0,
+            MOD_Control                 = 1 << 1,
+            MOD_Alt                     = 1 << 2,
+            MOD_CapsLock                = 1 << 3,
+            MOD_NumLock                 = 1 << 4,
             MOD_Super                   = MOD_Shift & MOD_Control,
             MOD_Hyper                   = MOD_Shift & MOD_Alt,
             MOD_Ultra                   = MOD_Control & MOD_Alt,

@@ -1,30 +1,30 @@
 #pragma once
 
-#include <Input/MouseCodes.h>
-#include <Core/Events/WindowEvents.h>
+#include <Base/Base.h>
+#include <Base/Event.h>
 
+#include <Input/MouseCodes.h>
 
 namespace AEON
 {
 
-//AEON_TYPE_NAME( AEON::MouseEvent );
-//AEON_TYPE_NAME( AEON::MouseMoveEvent );
-//AEON_TYPE_NAME( AEON::MouseScrollEvent );
-//AEON_TYPE_NAME( AEON::MouseButtonEvent );
-//AEON_TYPE_NAME( AEON::MouseDownEvent );
-//AEON_TYPE_NAME( AEON::MouseUpEvent );
-//AEON_TYPE_NAME( AEON::MouseDoubleEvent );
-
-struct MouseEvent : public WindowEvent, ITypeInfo< MouseEvent >
+namespace Graphics
 {
-    MouseEvent( auto* window, const int32_t& x, const int32_t& y ) 
-    : WindowEvent( window ), _x( x ), _y( y ) {};
+    class Window;   // forward declare
+}
 
-    int32_t x() const { return _x;  }
-    int32_t y() const { return _y;  }
+struct MouseEvent : public Event, ITypeInfo< MouseEvent >
+{
+    MouseEvent( Graphics::Window* window, const int32_t& x, const int32_t& y ) 
+    : _window( window ), _x( x ), _y( y ) {};
+
+    spy_ptr<Graphics::Window> window() const { return _window; }
+    int32_t                   x()      const { return _x;  }
+    int32_t                   y()      const { return _y;  }
 private:
-    int32_t _x;
-    int32_t _y;
+    spy_ptr<Graphics::Window>  _window;
+    int32_t                    _x;
+    int32_t                    _y;
 };
 
 struct MouseMoveEvent : public MouseEvent, ITypeInfo< MouseMoveEvent >

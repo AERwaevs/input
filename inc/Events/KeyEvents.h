@@ -1,14 +1,22 @@
 #pragma once
 
+#include <Base/Base.h>
+#include <Base/Event.h>
+
 #include <Input/KeyCodes.h>
 
 namespace AEON
 {
-
-struct KeyEvent : public ITypeInfo< KeyEvent >
+    
+namespace Graphics
 {
-    KeyEvent( auto* window, Key::ScanCode& code, Key::Code& key, Key::Mod& mod )
-    : WindowEvent( window ), _code( code ), _key( key ), _mod( mod ) {};
+    class Window;   // forward declare
+}
+
+struct KeyEvent : public Event, ITypeInfo< KeyEvent >
+{
+    KeyEvent( Graphics::Window* window, Key::ScanCode& code, Key::Code& key, Key::Mod& mod )
+    : _window( window ), _code( code ), _key( key ), _mod( mod ) {};
     
     spy_ptr<Graphics::Window>  window() const { return _window; }
     Key::ScanCode              code()   const { return _code; }

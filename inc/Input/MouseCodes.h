@@ -6,7 +6,7 @@ namespace AEON
 {
     namespace Mouse
     {
-        enum Code : uint8_t
+        typedef enum : uint8_t
         {
             None        = 0,
             Primary     = BIT( 0 ),
@@ -19,6 +19,6 @@ namespace AEON
             Middle      = Tertiary,
             Front       = Auxilliary2,
             Back        = Auxilliary1
-        };
+        } Code;
     }
 }

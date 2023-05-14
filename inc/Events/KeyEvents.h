@@ -19,13 +19,13 @@ struct KeyEvent : public Event, ITypeInfo< KeyEvent >
     : _window( window ), _code( code ), _key( key ), _mod( mod ) {};
     
     spy_ptr<Graphics::Window>  window() const { return _window; }
-    Key::ScanCode              code()   const { return _code; }
-    Key::Code                  key()    const { return _key; }
+    Key::Code                  code()   const { return _code; }
+    Key::Key                   key()    const { return _key; }
     Key::Mod                   mod()    const { return _mod; }
 private:
     spy_ptr<Graphics::Window>  _window;
-    Key::ScanCode              _code;
-    Key::Code                  _key;
+    Key::Code                  _code;
+    Key::Key                   _key;
     Key::Mod                   _mod;
 };
 

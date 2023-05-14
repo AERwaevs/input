@@ -15,7 +15,7 @@ namespace Graphics
 
 struct KeyEvent : public Event, ITypeInfo< KeyEvent >
 {
-    KeyEvent( Graphics::Window* window, Key::ScanCode& code, Key::Code& key, Key::Mod& mod )
+    KeyEvent( Graphics::Window* window, Key::Code code, Key::Key key, Key::Mod mod )
     : _window( window ), _code( code ), _key( key ), _mod( mod ) {};
     
     spy_ptr<Graphics::Window>  window() const { return _window; }
@@ -31,19 +31,19 @@ private:
 
 struct KeyDownEvent : public KeyEvent, ITypeInfo< KeyDownEvent >
 {
-    KeyDownEvent( auto* window, auto& code, auto& key, auto& mod )
+    KeyDownEvent( auto* window, auto code, auto key, auto mod )
     : KeyEvent( window, code, key, mod ) {};
 };
 
 struct KeyUpEvent : public KeyEvent, ITypeInfo< KeyUpEvent >
 {
-    KeyUpEvent( auto* window, auto& code, auto& key, auto& mod )
+    KeyUpEvent( auto* window, auto code, auto key, auto mod )
     : KeyEvent( window, code, key, mod ) {};
 };
 
 struct KeyHoldEvent : public KeyEvent, ITypeInfo< KeyHoldEvent >
 {
-    KeyHoldEvent( auto* window, auto& code, auto& key, auto& mod, uint32_t repeats )
+    KeyHoldEvent( auto* window, auto code, auto key, auto mod, uint32_t repeats )
     : KeyEvent( window, code, key, mod ), _repeats( repeats ) {};
 
     uint32_t repeats() const { return _repeats; }

@@ -1,9 +1,11 @@
 #pragma once
 
+#include <stdint.h>
+
 namespace AEON::Mouse
 {
 
-typedef enum : char
+typedef enum : uint8_t
 {
     None        = 0,
     Primary     = 1 << 0,

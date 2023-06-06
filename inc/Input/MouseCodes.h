@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-namespace AEON::Mouse
+namespace aer::Mouse
 {
 
 typedef enum : uint8_t

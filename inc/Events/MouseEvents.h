@@ -5,7 +5,7 @@
 
 #include "../Input/MouseCodes.h"
 
-namespace AEON
+namespace aer
 {
 
 namespace Graphics
@@ -71,4 +71,4 @@ struct MouseDoubleEvent : public MouseButtonEvent, ITypeInfo< MouseDoubleEvent >
     : MouseButtonEvent( window, x, y, button ) {};
 };
 
-} // namespace AEON
+} // namespace aer

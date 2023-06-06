@@ -5,7 +5,7 @@
 
 #include "../Input/KeyCodes.h"
 
-namespace AEON
+namespace aer
 {
     
 namespace Graphics

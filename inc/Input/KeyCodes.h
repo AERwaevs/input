@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-namespace AEON::Key
+namespace aer::Key
 {
 
 typedef enum : uint16_t

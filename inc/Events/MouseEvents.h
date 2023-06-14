@@ -15,14 +15,14 @@ namespace Graphics
 
 struct MouseEvent : public Event, ITypeInfo< MouseEvent >
 {
-    MouseEvent( Graphics::Window* window, int32_t x, int32_t y ) 
+    MouseEvent( gfx::Window* window, int32_t x, int32_t y ) 
     : _window( window ), _x( x ), _y( y ) {};
 
-    spy_ptr<Graphics::Window> window() const { return _window; }
+    spy_ptr<gfx::Window> window() const { return _window; }
     int32_t                   x()      const { return _x;  }
     int32_t                   y()      const { return _y;  }
 private:
-    spy_ptr<Graphics::Window>  _window;
+    spy_ptr<gfx::Window>  _window;
     int32_t                    _x;
     int32_t                    _y;
 };

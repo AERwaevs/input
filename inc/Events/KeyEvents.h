@@ -8,22 +8,22 @@
 namespace aer
 {
     
-namespace Graphics
+namespace gfx
 {
     class Window;   // forward declare
 }
 
 struct KeyEvent : public Event, ITypeInfo< KeyEvent >
 {
-    KeyEvent( Graphics::Window* window, Key::Code code, Key::Key key, Key::Mod mod )
+    KeyEvent( gfx::Window* window, Key::Code code, Key::Key key, Key::Mod mod )
     : _window( window ), _code( code ), _key( key ), _mod( mod ) {};
     
-    spy_ptr<Graphics::Window>  window() const { return _window; }
+    spy_ptr<gfx::Window>  window() const { return _window; }
     Key::Code                  code()   const { return _code; }
     Key::Key                   key()    const { return _key; }
     Key::Mod                   mod()    const { return _mod; }
 private:
-    spy_ptr<Graphics::Window>  _window;
+    spy_ptr<gfx::Window>  _window;
     Key::Code                  _code;
     Key::Key                   _key;
     Key::Mod                   _mod;

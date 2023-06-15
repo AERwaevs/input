@@ -8,7 +8,7 @@
 namespace aer
 {
 
-namespace Graphics
+namespace gfx
 {
     class Window;   // forward declare
 }

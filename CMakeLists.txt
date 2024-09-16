@@ -4,7 +4,7 @@ cmake_minimum_required( VERSION 3.20 )
 set( CMAKE_CXX_STANDARD          20  )
 set( CMAKE_CXX_STANDARD_REQUIRED ON  )
 set( CMAKE_CXX_EXTENSIONS        OFF )
-# AEON::Core ------------------------------------------------------------------------------------------
+# AER::Core ------------------------------------------------------------------------------------------
 set( INPUT_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib )
 set( INPUT_INC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/inc )
 set( INPUT_SRC_DIR ${INPUT_INC_DIR}/Input )

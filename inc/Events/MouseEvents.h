@@ -13,7 +13,7 @@ namespace gfx
     class Window;   // forward declare
 }
 
-struct MouseEvent : public Event, ITypeInfo< MouseEvent >
+struct MouseEvent : public Event
 {
     MouseEvent( gfx::Window* window, int32_t x, int32_t y ) 
     : _window( window ), _x( x ), _y( y ) {};
@@ -27,13 +27,13 @@ private:
     int32_t                    _y;
 };
 
-struct MouseMoveEvent : public MouseEvent, ITypeInfo< MouseMoveEvent >
+struct MouseMoveEvent : public MouseEvent
 {
     MouseMoveEvent( auto* window, auto x, auto y ) 
     : MouseEvent( window, x, y ) {};
 };
 
-struct MouseScrollEvent : public MouseEvent, ITypeInfo< MouseScrollEvent >
+struct MouseScrollEvent : public MouseEvent
 {
     MouseScrollEvent( auto* window, auto x, auto y, int32_t z ) 
     : MouseEvent( window, x, y ), _z( z ) {};
@@ -43,7 +43,7 @@ private:
     int32_t _z;
 };
 
-struct MouseButtonEvent : public MouseEvent, ITypeInfo< MouseButtonEvent >
+struct MouseButtonEvent : public MouseEvent
 {
     MouseButtonEvent( auto* window, auto x, auto y, Mouse::Code button )
     : MouseEvent( window, x, y ), _button( button ) {};
@@ -53,19 +53,19 @@ private:
     Mouse::Code _button;
 };
 
-struct MouseDownEvent : public MouseButtonEvent, ITypeInfo< MouseDownEvent >
+struct MouseDownEvent : public MouseButtonEvent
 {
     MouseDownEvent( auto* window, auto x, auto y, auto button ) 
     : MouseButtonEvent( window, x, y, button ) {};
 };
     
-struct MouseUpEvent : public MouseButtonEvent, ITypeInfo< MouseUpEvent >
+struct MouseUpEvent : public MouseButtonEvent
 {
     MouseUpEvent( auto* window, auto x, auto y, auto button ) 
     : MouseButtonEvent( window, x, y, button ) {};
 };
 
-struct MouseDoubleEvent : public MouseButtonEvent, ITypeInfo< MouseDoubleEvent >
+struct MouseDoubleEvent : public MouseButtonEvent
 {
     MouseDoubleEvent( auto* window, auto x, auto y, auto button )
     : MouseButtonEvent( window, x, y, button ) {};

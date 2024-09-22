@@ -13,7 +13,7 @@ namespace gfx
     class Window;   // forward declare
 }
 
-struct KeyEvent : public Event, ITypeInfo< KeyEvent >
+struct KeyEvent : public Event
 {
     KeyEvent( gfx::Window* window, Key::Code code, Key::Key key, Key::Mod mod )
     : _window( window ), _code( code ), _key( key ), _mod( mod ) {};
@@ -29,19 +29,19 @@ private:
     Key::Mod                   _mod;
 };
 
-struct KeyDownEvent : public KeyEvent, ITypeInfo< KeyDownEvent >
+struct KeyDownEvent : public KeyEvent
 {
     KeyDownEvent( auto* window, auto code, auto key, auto mod )
     : KeyEvent( window, code, key, mod ) {};
 };
 
-struct KeyUpEvent : public KeyEvent, ITypeInfo< KeyUpEvent >
+struct KeyUpEvent : public KeyEvent
 {
     KeyUpEvent( auto* window, auto code, auto key, auto mod )
     : KeyEvent( window, code, key, mod ) {};
 };
 
-struct KeyHoldEvent : public KeyEvent, ITypeInfo< KeyHoldEvent >
+struct KeyHoldEvent : public KeyEvent
 {
     KeyHoldEvent( auto* window, auto code, auto key, auto mod, uint32_t repeats )
     : KeyEvent( window, code, key, mod ), _repeats( repeats ) {};

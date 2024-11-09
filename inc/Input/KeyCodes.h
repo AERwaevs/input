@@ -7,16 +7,15 @@ namespace aer::Key
 
 typedef enum : uint16_t
 {
-    MOD_None                    = 0,
-    MOD_Shift                   = 1 << 0,
-    MOD_Control                 = 1 << 1,
-    MOD_Alt                     = 1 << 2,
-    MOD_CapsLock                = 1 << 3,
-    MOD_NumLock                 = 1 << 4,
-    MOD_Super                   = MOD_Shift   | MOD_Control,
-    MOD_Hyper                   = MOD_Shift   | MOD_Alt,
-    MOD_Ultra                   = MOD_Control | MOD_Alt,
-    MOD_Meta                    = MOD_Shift   | MOD_Control | MOD_Alt
+    MOD_None                    = 0B00000000,
+    MOD_Shift                   = 0B00000001,
+    MOD_CapsLock                = 0B00000010,
+    MOD_Control                 = 0B00000100,
+    MOD_Alt                     = 0B00001000,
+    MOD_NumLock                 = 0B00010000,
+    MOD_Super                   = 0B00100000,
+    MOD_Hyper                   = 0B01000000,
+    MOD_Meta                    = 0B10000000,
 } Mod;
 
 typedef enum : uint16_t

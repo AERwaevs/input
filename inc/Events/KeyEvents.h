@@ -15,40 +15,33 @@ namespace gfx
 
 struct KeyEvent : public Event
 {
-    KeyEvent( gfx::Window* window, Key::Code code, Key::Key key, Key::Mod mod )
-    : _window( window ), _code( code ), _key( key ), _mod( mod ) {};
-    
-    spy_ptr<gfx::Window>  window() const { return _window; }
-    Key::Code                  code()   const { return _code; }
-    Key::Key                   key()    const { return _key; }
-    Key::Mod                   mod()    const { return _mod; }
-private:
-    spy_ptr<gfx::Window>  _window;
-    Key::Code                  _code;
-    Key::Key                   _key;
-    Key::Mod                   _mod;
+    KeyEvent(auto in_window, auto in_key_base, auto in_key_modified, auto in_mod)
+    : window(in_window), key_base(in_key_base), key_modified(in_key_modified), modifier(in_mod) {};
+
+    spy_ptr<gfx::Window> window;
+    aer::key_symbol      key_base;
+    aer::key_symbol      key_modified;
+    aer::key::mod        modifier;
 };
 
 struct KeyDownEvent : public KeyEvent
 {
-    KeyDownEvent( auto* window, auto code, auto key, auto mod )
-    : KeyEvent( window, code, key, mod ) {};
+    KeyDownEvent(auto window, auto in_key_base, auto in_key_modified, auto in_mod)
+    : KeyEvent(window, in_key_base, in_key_modified, in_mod) {};
 };
 
 struct KeyUpEvent : public KeyEvent
 {
-    KeyUpEvent( auto* window, auto code, auto key, auto mod )
-    : KeyEvent( window, code, key, mod ) {};
+    KeyUpEvent(auto window, auto in_key_base, auto in_key_modified, auto in_mod)
+    : KeyEvent(window, in_key_base, in_key_modified, in_mod) {};
 };
 
 struct KeyHoldEvent : public KeyEvent
 {
-    KeyHoldEvent( auto* window, auto code, auto key, auto mod, uint32_t repeats )
-    : KeyEvent( window, code, key, mod ), _repeats( repeats ) {};
+    KeyHoldEvent(auto window, auto in_key_base, auto in_key_modified, auto in_mod, auto in_repeats)
+    : KeyEvent(window, in_key_base, in_key_modified, in_mod), repeats(in_repeats) {};
 
-    uint32_t repeats() const { return _repeats; }
-private:
-    uint32_t _repeats;
+    uint32_t repeats;
 };
 
 }

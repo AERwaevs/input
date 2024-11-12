@@ -8,17 +8,14 @@
 namespace aer
 {
     
-namespace gfx
-{
-    class Window;   // forward declare
-}
+class Window;   // forward declare
 
 struct KeyEvent : public Event
 {
     KeyEvent(auto in_window, auto in_key_base, auto in_key_modified, auto in_mod)
     : window(in_window), key_base(in_key_base), key_modified(in_key_modified), modifier(in_mod) {};
 
-    spy_ptr<gfx::Window> window;
+    spy_ptr<Window> window;
     aer::key_symbol      key_base;
     aer::key_symbol      key_modified;
     aer::key::mod        modifier;

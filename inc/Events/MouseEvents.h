@@ -1,28 +1,27 @@
 #pragma once
 
+#include <any>
+
 #include <Base/Base.h>
 #include <Base/Event.h>
 
-#include "../Input/MouseCodes.h"
+#include <Input/MouseCodes.h>
 
 namespace aer
 {
 
-namespace gfx
-{
-    class Window;   // forward declare
-}
+class Window;
 
 struct MouseEvent : public Event
 {
-    MouseEvent( gfx::Window* window, int32_t x, int32_t y ) 
+    MouseEvent( std::any* window, int32_t x, int32_t y ) 
     : _window( window ), _x( x ), _y( y ) {};
 
-    spy_ptr<gfx::Window> window() const { return _window; }
+    spy_ptr<std::any> window() const { return _window; }
     int32_t                   x()      const { return _x;  }
     int32_t                   y()      const { return _y;  }
 private:
-    spy_ptr<gfx::Window>  _window;
+    spy_ptr<std::any>  _window;
     int32_t                    _x;
     int32_t                    _y;
 };

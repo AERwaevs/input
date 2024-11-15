@@ -1,7 +1,5 @@
 #pragma once
 
-#include <any>
-
 #include <Base/Base.h>
 #include <Base/Event.h>
 
@@ -14,14 +12,14 @@ class Window;
 
 struct MouseEvent : public Event
 {
-    MouseEvent( std::any* window, int32_t x, int32_t y ) 
+    MouseEvent( Window* window, int32_t x, int32_t y ) 
     : _window( window ), _x( x ), _y( y ) {};
 
-    spy_ptr<std::any> window() const { return _window; }
+    spy_ptr<Window> window() const { return _window; }
     int32_t                   x()      const { return _x;  }
     int32_t                   y()      const { return _y;  }
 private:
-    spy_ptr<std::any>  _window;
+    spy_ptr<Window>  _window;
     int32_t                    _x;
     int32_t                    _y;
 };

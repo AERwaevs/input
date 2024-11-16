@@ -42,12 +42,12 @@ private:
 
 struct MouseButtonEvent : public MouseEvent
 {
-    MouseButtonEvent( auto* window, auto x, auto y, Mouse::Code button )
+    MouseButtonEvent( auto* window, auto x, auto y, MouseCode button )
     : MouseEvent( window, x, y ), _button( button ) {};
     
-    Mouse::Code button() const { return _button; }
+    MouseCode button() const { return _button; }
 private:
-    Mouse::Code _button;
+    MouseCode _button;
 };
 
 struct MouseDownEvent : public MouseButtonEvent

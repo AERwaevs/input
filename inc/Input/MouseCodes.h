@@ -2,23 +2,23 @@
 
 #include <stdint.h>
 
-namespace aer::Mouse
+namespace aer
 {
 
-typedef enum : uint8_t
+enum MouseCode : uint16_t
 {
-    None        = 0,
-    Primary     = 1 << 0,
-    Secondary   = 1 << 1,
-    Tertiary    = 1 << 2,
-    Auxilliary1 = 1 << 3,
-    Auxilliary2 = 1 << 4,
-    Left        = Primary,
-    Right       = Secondary,
-    Middle      = Tertiary,
-    Front       = Auxilliary2,
-    Back        = Auxilliary1
-} Code;
+    MOUSE_None        = 0,
+    MOUSE_Primary     = 1 << 0,
+    MOUSE_Secondary   = 1 << 1,
+    MOUSE_Tertiary    = 1 << 2,
+    MOUSE_Auxilliary1 = 1 << 3,
+    MOUSE_Auxilliary2 = 1 << 4,
+    MOUSE_Left        = MOUSE_Primary,
+    MOUSE_Right       = MOUSE_Secondary,
+    MOUSE_Middle      = MOUSE_Tertiary,
+    MOUSE_Front       = MOUSE_Auxilliary2,
+    MOUSE_Back        = MOUSE_Auxilliary1
+};
 
 
 }

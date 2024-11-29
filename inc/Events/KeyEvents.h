@@ -14,11 +14,12 @@ struct KeyEvent : public Event
 {
     KeyEvent(auto in_window, auto in_key_base, auto in_key_modified, auto in_mod)
     : window(in_window), key_base(in_key_base), key_modified(in_key_modified), modifier(in_mod) {};
-
-    spy_ptr<Window> window;
-    aer::key_symbol      key_base;
-    aer::key_symbol      key_modified;
-    aer::key::mod        modifier;
+    virtual ~KeyEvent() noexcept = default;
+    
+    const spy_ptr<Window> window;
+    const aer::key_symbol key_base;
+    const aer::key_symbol key_modified;
+    const aer::key::mod   modifier;
 };
 
 struct KeyDownEvent : public KeyEvent

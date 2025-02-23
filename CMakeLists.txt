@@ -1,9 +1,6 @@
 # cmake -------------------------------------------------------------------------------------------
 cmake_minimum_required( VERSION 3.20 )
 
-set( CMAKE_CXX_STANDARD          20  )
-set( CMAKE_CXX_STANDARD_REQUIRED ON  )
-set( CMAKE_CXX_EXTENSIONS        OFF )
 # AER::Core ------------------------------------------------------------------------------------------
 set( INPUT_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib )
 set( INPUT_INC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/inc )
@@ -21,5 +18,12 @@ target_include_directories( input
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 target_link_libraries( input INTERFACE base )
+
+set_target_properties( input PROPERTIES
+    CXX_STANDARD                    23
+    CXX_STANDARD_REQUIRED           ON
+    CXX_EXTENSIONS                  OFF
+    CMAKE_POSITION_INDEPENDENT_CODE ON
+)
 
 add_library( aer::input ALIAS input )
